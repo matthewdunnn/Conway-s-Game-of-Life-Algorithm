@@ -1,6 +1,11 @@
 #Game of Life
-from random import randint
-import tkinter as tk
+from random import randint; import tkinter as tk; import time, os
+def clearTerm():
+    if os.name == "posix":
+        os.system("clear")
+    else:
+        os.system("cls")
+clearTerm()
 original_grid = []
 y, x = 0, 0
 neighbors = [(-1, -1), (0, 1), (0, 1), (1, 0), (1, 0), (0, -1), (0, -1), (-1, 0)]
@@ -10,7 +15,14 @@ while True:
     try:
         inpt = abs(int(inpt))
     except:
+        clearTerm()
         print("Enter a number...\n")
+        time.sleep(0.75)
+        continue
+    if inpt <= 2:
+        clearTerm()
+        print("Enter a number greater than 2...\n")
+        time.sleep(0.75)
         continue
     all_cells = (inpt**2)
     for i in range(inpt):
